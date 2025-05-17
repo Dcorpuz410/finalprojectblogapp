@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>Blog Home</title></head>
+<body>
+    <h1>All Posts</h1>
+    {% for post in posts %}
+        <hr>
+        <h2>{{ post.title }}</h2>
+        <p><em>By {{ post.author }} on {{ post.date.strftime('%Y-%m-%d %H:%M') }}</em></p>
+        <div>{{ post.content }}</div>
+    {% endfor %}
+    <br>
+    <a href="/login">Login</a> | <a href="/signup">Sign Up</a> | <a href="/dashboard">Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ username }}</h1>
+
+    <h2>Your Posts</h2>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <strong>{{ post.title }}</strong> — {{ post.date }}
+                <form method="post" action="{{ url_for('delete_post', post_id=loop.index0) }}">
+                    <button type="submit">Delete</button>
+                </form>
+                <a href="{{ url_for('edit_post', post_id=loop.index0) }}">Edit</a>
+            </li>
+        {% else %}
+            <li>No posts yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Create New Post</h2>
+    <form method="post" action="{{ url_for('create_post') }}">
+        <input name="title" placeholder="Title" required><br>
+        <textarea name="content" placeholder="Content" required></textarea><br>
+        <button type="submit">Create Post</button>
+    </form>
+
+    <form method="post" action="{{ url_for('logout') }}">
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>
